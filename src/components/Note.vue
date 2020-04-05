@@ -7,10 +7,10 @@
                     X
                 </span>
             </div>
-            <div class="tc-note-title" contenteditable="">
+            <div class="tc-note-title" contenteditable="" @blur="titleChanged">
                 {{note.title}}
             </div>
-            <div class="tc-note-body" contenteditable="">
+            <div class="tc-note-body" contenteditable="" @blur="bodyChanged">
                 {{note.body}}
             </div>
         </div>
@@ -29,6 +29,14 @@
         methods:{
             deleteNote(){
                 this.$emit('deleteNote', this.note);
+            },
+            titleChanged($event){
+                this.note.title = $event.target.innerHTML;
+                this.$emit('noteUpdated', this.note);
+            },
+            bodyChanged($event){
+                this.note.body = $event.target.innerHTML;
+                this.$emit('noteUpdated', this.note);
             }
         }
     }

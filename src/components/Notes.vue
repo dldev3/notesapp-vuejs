@@ -2,7 +2,7 @@
     <div class="tc-notes-wrapper">
         <add-new-button @addNote="addNote"/>
         <div class="tc-notes">
-            <note v-for="(note,index) in notes" :key="index" :note="note" @deleteNote="deleteNote"/>
+            <note v-for="(note,index) in notes" :key="index" :note="note" @deleteNote="deleteNote" @noteUpdated="noteUpdated" />
         </div>
     </div>
 </template>
@@ -45,6 +45,9 @@
             },
             deleteNote(note){
                 this.notes.splice(this.notes.indexOf(note),1);
+            },
+            noteUpdated(note){
+                console.log(note);
             }
         }
     }
